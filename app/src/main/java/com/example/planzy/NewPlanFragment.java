@@ -46,6 +46,7 @@ public class NewPlanFragment extends Fragment {
     View view;
     Button dateBtn, timeBtn, addParticipantsBtn, createPlanBtn;
     EditText planNameTxt, planLocationTxt;
+    List<String> planLocations;
     String selectedDate = "", selectedTime = "";
 
     List<String> participants;
@@ -176,7 +177,9 @@ public class NewPlanFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String planName = planNameTxt.getText().toString();
-                String planLocation = planLocationTxt.getText().toString();
+                String planLocationsField = planLocationTxt.getText().toString();
+                String[] locationsArray = planLocationsField.split("\\s*,\\s*");
+                planLocations = Arrays.asList(locationsArray);
 
                 if(planName.isEmpty()){
                     planNameTxt.setError("Name is required");
@@ -203,9 +206,10 @@ public class NewPlanFragment extends Fragment {
                                         //String[] participantsArray = task.getResult().getString("username").split("\\s*,\\s*");
                                         //List<String> participants = Arrays.asList(participantsArray);
 
-                                        PlanModel newPlan = new PlanModel(planName, planLocation, selectedDate,
+                                        PlanModel newPlan = new PlanModel(planName, planLocations, selectedDate,
                                                                         selectedTime, currentUserName, participants);
                                         savePlanToFirebase(newPlan, mainMenuFragment);
+                                        createPoll(planName, participants, mainMenuFragment);
                                     }
                                 }
                             });
@@ -217,16 +221,22 @@ public class NewPlanFragment extends Fragment {
         return view;
     }
 
+    public void createPoll(String planName, List<String> participants, MainMenuFragment mainMenuFragment){
+        PollModel newPoll = new PollModel(planName+"LocationPoll", participants.size());
+        newPoll.setVotesCommitted(0);
+        savePollToFirebase(newPoll, mainMenuFragment);
+    }
+
     public void onReenter(Intent data) {
         // Do whatever with the data here
         Log.d("Re-Enter Method: ",data.toString());
     }
 
     void savePlanToFirebase(PlanModel newPlan, MainMenuFragment mainMenuFragment){
-        DocumentReference documentReference;
-        documentReference = Utility.getCollectioReferenceForPlans().document();
+        DocumentReference plansDocumentReference;
+        plansDocumentReference = Utility.getCollectioReferenceForPlans().document();
 
-        documentReference.set(newPlan)
+        plansDocumentReference.set(newPlan)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -240,5 +250,25 @@ public class NewPlanFragment extends Fragment {
                         }
                     }
                 });
+    }
+
+    void savePollToFirebase(PollModel newPoll, MainMenuFragment mainMenuFragment){
+        DocumentReference pollsDocumentReference;
+        pollsDocumentReference = Utility.getCollectionReferenceForPolls().document();
+
+        pollsDocumentReference.set(newPoll);
+                /*.addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            //Utility.showToast(getContext(), "Poll created successfully!");
+                            getParentFragmentManager().beginTransaction()
+                                    .replace(R.id.homepage_fragment_view, mainMenuFragment)
+                                    .commit();
+                        } else {
+                            Utility.showToast(getContext(), "plan creation failed!");
+                        }
+                    }
+                });*/
     }
 }

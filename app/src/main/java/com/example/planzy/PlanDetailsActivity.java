@@ -1,5 +1,7 @@
 package com.example.planzy;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -14,11 +16,15 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -37,9 +43,51 @@ public class PlanDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plan_details);
 
+        //**Update this to retrieve and show list of participants**
         participants = (TextView) findViewById(R.id.participants);
         String noParticipants = "No participants added yet";
         participants.setText(noParticipants);
+
+        //**Updates**
+        //1st get collecitonRef
+        //2nd call .whereEqualTo("Field", "Value"); on the collectionRef.
+        Utility.getCollectioReferenceForPlans().
+                whereEqualTo("name", "boisOuting")
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        String data = "";
+
+                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                            PlanModel retrievedPlan = documentSnapshot.toObject(PlanModel.class);
+                            retrievedPlan.setDocumentID(documentSnapshot.getId());
+                            String documentID = retrievedPlan.getDocumentID();
+                            for(String participant : retrievedPlan.getParticipants()){
+                                data += "\n" + participant;
+                            }
+                            data += "\n\n";
+                        }
+                        participants.setText(data);
+                    }
+                });
+
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        //retrieve values and assign
+//                        if (task.isSuccessful()) {
+//                            for (QueryDocumentSnapshot document : task.getResult()) {
+//                                //Log.d("TAG", document.getId() + " => " + document.get("participants"));
+//                                participants.setText(String.valueOf(document.get("participants")));
+//                            }
+//                        } else {
+//                            Log.d("TAG", "Error getting documents: ", task.getException());
+//                        }
+//                    }
+//                });
+
+
 
         planDetailsTitle = (TextView) findViewById(R.id.planDetailsTitle);
         planDetailsLocation = (TextView) findViewById(R.id.planDetailsLocation);
@@ -56,7 +104,7 @@ public class PlanDetailsActivity extends AppCompatActivity {
         //set the received data to appropriate components
         planDetailsTitle.setText(detailsTitle);
         planDetailsLocation.setText(detailsLocation);
-        planDocID.setText(docID);
+        planDocID.setText("Created By: "+ docID);
 
         //get the username for current user
         /* FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();

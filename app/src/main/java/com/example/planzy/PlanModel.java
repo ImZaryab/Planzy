@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlanModel {
+    String ID;
     String name;
     String location;
+    List<String> locations;
     String date;
     String time;
 
@@ -17,9 +19,10 @@ public class PlanModel {
 
     }
 
-    public PlanModel(String name, String location, String date, String time, String createdBy, List<String> participants) {
+    public PlanModel(String name, List<String> locations, String date, String time, String createdBy, List<String> participants) {
         this.name = name;
-        this.location = location;
+        this.locations = locations;
+        this.location = "TBD";
         this.date = date;
         this.time = time;
         this.createdBy = createdBy;
@@ -32,6 +35,14 @@ public class PlanModel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<String> getLocations() {
+        return locations;
+    }
+
+    public void setLocations(List<String> locations) {
+        this.locations = locations;
     }
 
     public String getLocation() {
@@ -65,4 +76,8 @@ public class PlanModel {
     public List<String> getParticipants(){ return this.participants; }
 
     public void setParticipants(List<String> participants){ this.participants = participants; }
+
+    public void setDocumentID(String id){ this.ID = id; }
+
+    public String getDocumentID(){ return this.ID; }
 }

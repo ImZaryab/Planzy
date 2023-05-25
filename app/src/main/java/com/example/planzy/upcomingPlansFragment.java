@@ -66,7 +66,7 @@ public class upcomingPlansFragment extends Fragment {
     }
 
     void setupRecyclerView(){
-        Query query = Utility.getCollectioReferenceForPlans().orderBy("name", Query.Direction.DESCENDING);
+        Query query = Utility.getCollectioReferenceForPlans();
         FirestoreRecyclerOptions<PlanModel> options = new FirestoreRecyclerOptions.Builder<PlanModel>()
                 .setQuery(query, PlanModel.class).build();
         plansRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

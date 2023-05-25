@@ -26,4 +26,9 @@ public class Utility {
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         return FirebaseFirestore.getInstance().collection("Plans");
     }
+
+    static CollectionReference getCollectionReferenceForPolls(){
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        return FirebaseFirestore.getInstance().collection("Polls");
+    }
 }
