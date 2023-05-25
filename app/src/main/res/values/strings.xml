@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Planzy</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="emailTxt">enter your email</string>
+    <string name="passwordTxt">enter your password</string>
+    <string name="forgotPasswordTxt">forgot Password?</string>
+    <string name="loginTxt">login</string>
+    <string name="signupTxt">signup</string>
+    <string name="usernameTxt">enter your username</string>
+    <string name="repasswordTxt">re-enter password</string>
+    <string name="gotologinTxt">go to login</string>
+    <string name="card1Txt">new plan</string>
+    <string name="card2Txt">upcoming plans</string>
+    <string name="card3Txt">history</string>
+    <string name="planName">name your plan</string>
+    <string name="selectDate">select a date:</string>
+    <string name="selectedDate">no selected date</string>
+    <string name="selectTime">select time:</string>
+    <string name="selectedTime">no selected time</string>
+    <string name="planLocation">where do you plan to go?</string>
+    <string name="createPlan">create plan</string>
+    <string name="planTitle">plan title</string>
+    <string name="planStatus">plan status</string>
+    <string name="user">user</string>
+    <string name="add_participants">add participants</string>
+    <string name="finish">finish</string>
+    <string name="contactTxt">enter contact number</string>
+</resources>

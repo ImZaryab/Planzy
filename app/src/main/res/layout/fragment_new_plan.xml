@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="30dp"
+    android:background="@color/lavender"
+    tools:context=".NewPlanFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/planNameTxt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:autofillHints=""
+            android:hint="@string/planName"
+            android:fontFamily="@font/work_sans"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="1"
+            app:layout_constraintVertical_bias="0.1"
+            app:layout_constraintHorizontal_bias="0"/>
+
+        <EditText
+            android:id="@+id/planLocationTxt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:autofillHints=""
+            android:hint="@string/planLocation"
+            android:fontFamily="@font/work_sans"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/planNameTxt"
+            app:layout_constraintWidth_percent="1"
+            app:layout_constraintVertical_bias="0.05"
+            app:layout_constraintHorizontal_bias="0"/>
+
+        <TextView
+        android:id="@+id/selectDateTxt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/selectDate"
+        android:textSize="20sp"
+        android:fontFamily="@font/work_sans"
+        android:textColor="@color/black"
+        app:layout_constraintWidth_percent="1"
+        app:layout_constraintVertical_bias="0.05"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/planLocationTxt" />
+
+        <Button
+            android:id="@+id/dateBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/selectedDate"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:fontFamily="@font/work_sans"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            app:layout_constraintWidth_percent="1"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/selectDateTxt"
+            style="?android:spinnerStyle" />
+
+        <TextView
+            android:id="@+id/selectTimeTxt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/selectTime"
+            android:textSize="20sp"
+            android:fontFamily="@font/work_sans"
+            android:textColor="@color/black"
+            app:layout_constraintWidth_percent="1"
+            app:layout_constraintVertical_bias="0.05"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dateBtn" />
+
+        <Button
+            android:id="@+id/timeBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/selectedTime"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:fontFamily="@font/work_sans"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            app:layout_constraintWidth_percent="1"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/selectTimeTxt"
+            style="?android:spinnerStyle" />
+
+        <Button
+            android:id="@+id/addParticipantsBtn"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="@string/add_participants"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:fontFamily="@font/work_sans"
+            android:textColor="@color/white"
+            android:background="@drawable/button_bg"
+            app:backgroundTint="@color/black"
+            android:textAlignment="center"
+            app:layout_constraintWidth_percent="1"
+            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintVertical_bias="0.3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/timeBtn" />
+
+        <Button
+            android:id="@+id/createPlanBtn"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="@string/createPlan"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:fontFamily="@font/work_sans"
+            android:textColor="@color/white"
+            android:background="@drawable/button_bg"
+            app:backgroundTint="@color/black"
+            android:textAlignment="center"
+            app:layout_constraintWidth_percent="1"
+            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintVertical_bias="0.3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/addParticipantsBtn" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

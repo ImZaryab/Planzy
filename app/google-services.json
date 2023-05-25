@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "74810687667",
+    "project_id": "planzy-test-ed768",
+    "storage_bucket": "planzy-test-ed768.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:74810687667:android:322beb5323d653cfa9b0c6",
+        "android_client_info": {
+          "package_name": "com.example.planzy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "74810687667-0hvi10nv98vc5geda4670saihhqbk1et.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5801U6meuqgYMvPtQEfxvqPtSFoJgk9o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "74810687667-0hvi10nv98vc5geda4670saihhqbk1et.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
